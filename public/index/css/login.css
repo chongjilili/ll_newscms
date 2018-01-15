@@ -1,0 +1,66 @@
+html,body {
+    background:url(../img/b1.png) repeat #f8f6e9;
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .mycenter{
+        margin-top: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 350px;
+        width:100%;
+        padding: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+     }
+    .mycenter mysign{
+        width: 100%;
+    }
+
+    .mycenter input,checkbox,button{
+        margin-top:2%;
+         
+    }
+    .mycheckbox{
+        margin-top:10px;
+        
+        margin-bottom: 10px;
+        height: 10px;
+    }
+}
+
+
+
+@media screen and (min-width: 768px) {
+      .mycenter{
+        margin-top: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 350px;
+        width:500px;
+        padding: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .mycenter mysign{
+        width: 440px;
+    }
+
+    .mycenter input,checkbox,button{
+        margin-top:2%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    .mycheckbox{
+        margin-top:10px;
+        margin-left: 40px;
+        margin-bottom: 10px;
+        height: 10px;
+    }
+
+}
+
+ 
+

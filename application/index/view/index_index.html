@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>llnews-首页</title>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.css">
+    <script src="__STATIC__/jquery-2.js" type="text/javascript" charset="utf-8"  ></script>
+
+    <script src="__STATIC__/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"  ></script>
+    <link rel="stylesheet" href="__P__/css/style.css">
+
+</head>
+<body>
+
+{include file="public/nav" }
+
+
+
+
+
+
+<div class="wrap row">
+
+    <!-- <div class="leftbox     col-md-2 col-sm-4 hidden-xs " >
+        <div class="leftnav">
+                <div class="nav_title">导航</div>
+                <div class="clear"></div>
+                <div class="navcat">
+                        <ul>
+                            <li><a href="" title="">科技</a></li>
+                            <li><a href="" title="">科技</a></li>
+                            <li><a href="" title="">科技</a></li>
+                            <li><a href="" title="">科技</a></li>
+                            <li><a href="" title="">科技</a></li>
+                            <li><a href="" title="">科技</a></li>
+                            <li><a href="" title="">科技</a></li>
+                            <li><a href="" title="">科技</a></li>
+                        </ul>
+                </div>
+        </div>
+
+    </div> -->
+
+
+    <div class="col-md-2 col-md-offset-2 col-sm-4   hidden-xs"  id="myScrollspy">
+        <ul class="nav nav-tabs nav-stacked" id="myNav">
+
+
+            <li {if condition=" $ll_cid eq 1"} class="active" {/if}><a href="{:url('index/index',['ll_cid'=>1 ])}">所有 </a></li>
+
+            {volist name="$catnt" id="c"}
+                 <li {if condition="$c['ll_cid'] eq $ll_cid"} class="active" {/if}><a href="{:url('index/index',['ll_cid'=>$c['ll_cid']])}">{$c.ll_catname} </a></li>
+            {/volist}
+
+
+
+
+        </ul>
+    </div>
+
+
+
+
+    <div class="newslist col-md-6 col-sm-8">
+        <ul class="newsul">
+
+
+
+
+            {volist name="$articlearr" id="art"}
+            <li>
+                <a href="{:url('news/detail',['ll_aid'=> $art['ll_aid']])}" title="" class="imga">
+                    <img src="__U__/{$art.ll_pics}" alt="{$art.ll_title}">
+                </a>
+                <div class="rbox">
+                    <div class="rtitle">
+                        <a href="{:url('news/detail',['ll_aid'=> $art['ll_aid']])}" title="">{$art.ll_title}</a>
+                    </div>
+                    <div class="rfooter">
+                        <a href="#" title="">{$art.ll_username}</a>*
+                        <a href="news.html" title="">{$art.commentnum}评论</a>
+                        <span>{$art.passtime|timeToFormat=###} </span>
+                    </div>
+                </div>
+
+            </li>
+
+            {/volist}
+
+
+
+
+
+        </ul>
+    </div>
+
+
+</div>
+
+<script>
+    $(document).ready(function(){
+        $("#myNav").affix({
+            offset: {
+                top: 125 ,
+
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>

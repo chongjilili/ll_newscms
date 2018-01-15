@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>llnews-首页</title>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.css">
+    <script src="__STATIC__/jquery-2.js" type="text/javascript" charset="utf-8"  ></script>
+
+    <script src="__STATIC__/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"  ></script>
+    <link rel="stylesheet" href="__P__/css/style.css">
+
+</head>
+<body>
+
+
+
+
+
+{include file="public/nav" }
+
+
+
+
+<div class="wrap row">
+
+
+
+    {include file="public/memberleft" }
+
+
+			<div class=" mnlist col-md-6   col-sm-8">
+				    <ul   >
+
+
+
+
+
+                        {volist name='list' id='v'}
+
+             <li style="min-height: 100px;">
+
+
+                <div class="rtitle">
+                  <a href="{:url('news/detail',['ll_aid'=>$v['ll_aid']])}" title="">{$v.ll_title}</a>
+
+                </div>
+                <div class="" style="text-align: right;">
+                  <a href="{:url('member/editnews',['ll_aid'=>$v['ll_aid']])}" title="">编辑</a>
+                  <a href="{:url('member/deletenews',['ll_aid'=>$v['ll_aid']])}" title="">删除</a>
+                </div>
+
+
+             </li>
+
+                        {/volist}
+
+        </ul>
+                {$page}
+
+			</div>
+
+		
+	</div>
+
+<script>
+$(document).ready(function(){
+    $("#myNav").affix({
+        offset: { 
+            top: 125 ,
+
+      }
+    });
+});
+</script>
+
+</body>
+ 
+</html>

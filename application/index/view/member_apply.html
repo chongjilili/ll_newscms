@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>llnews-首页</title>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.css">
+    <script src="__STATIC__/jquery-2.js" type="text/javascript" charset="utf-8"  ></script>
+
+    <script src="__STATIC__/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"  ></script>
+    <link rel="stylesheet" href="__P__/css/style.css">
+
+</head>
+<body>
+{include file="public/nav" }
+		 
+
+
+
+
+
+	<div class="wrap row">
+
+
+
+
+        {include file="public/memberleft" }
+
+
+			<div class="newslist col-md-6   col-sm-8">
+                <form action="{:url('member/doapply')}" method="post" id="form">
+
+                <div class="form-group">
+                         <label for="ll_uid">用户id</label>
+                         <input type="text" class="form-control" id="ll_uid" name="ll_uid" value="{$umsg.ll_uid}" disabled="" >
+                         <input type="hidden" name="ll_uid" value="{$umsg.ll_uid}"  >
+                     </div>
+
+                     <div class="form-group">
+                         <label  >用户名</label>
+                         <input type="text" class="form-control"     value="{$umsg.ll_username}"   >
+
+                     </div>
+                     <div class="form-group">
+                         <label for="ll_type">身份</label>
+                         <!--<input type="text" class="form-control" id="ll_typename" name="ll_typename" value="{$umsg.ll_typename}"  disabled>-->
+                         <select class="form-control" id="ll_type" name="ll_type" >
+                             {volist name="utlist" id="uv"}
+                             <option value="{$uv.ll_type}" {if condition="$uv['ll_type'] eq $umsg['ll_type']"} selected {/if} >{$uv.ll_typename}</option>
+                             {/volist}
+                         </select>
+
+
+                     </div>
+
+                    <div class="form-group">
+                        <label for="ll_msg">留言</label>
+
+                        <textarea name="ll_msg" id="ll_msg"></textarea>
+                    </div>
+ 
+           
+             
+            <button type="submit" class="btn btn-default" id="btn" >提交</button>
+          </form> 
+			</div>
+
+		
+	</div>
+
+<script>
+$(document).ready(function(){
+    $("#myNav").affix({
+        offset: { 
+            top: 125 ,
+
+      }
+    });
+});
+</script>
+
+</body>
+ 
+</html>

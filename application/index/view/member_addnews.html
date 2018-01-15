@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>llnews-首页</title>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.css">
+    <script src="__STATIC__/jquery-2.js" type="text/javascript" charset="utf-8"  ></script>
+
+    <script src="__STATIC__/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"  ></script>
+    <link rel="stylesheet" href="__P__/css/style.css">
+    <script src="__STATIC__/layui/layui.js"></script>
+    <link rel="stylesheet" href="__STATIC__/layui/css/layui.css">
+    <script type="text/javascript" src="__STATIC__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="__STATIC__/ueditor/ueditor.all.js"></script>
+
+</head>
+<body>
+
+{include file="public/nav" }
+		 
+
+
+
+
+
+	<div class="wrap row">
+
+
+
+
+        {include file="public/memberleft" }
+
+
+			<div class="newslist col-md-6   col-sm-8">
+				   <form action="{:url('member/doadd')}" method="post">
+            <div class="form-group">
+              <label for="ll_title">新闻题目</label>
+              <input type="text" class="form-control" id="ll_title" name="ll_title" value="新闻题目"   >
+              
+            </div>
+            <div class="form-group">
+              <label for="ll_cid">新闻分类</label>
+               <select class="form-control" name="ll_cid" id="ll_cid">
+
+                   {volist name="catnottree" id="cat"}
+                   <option value="{$cat.ll_cid}" >{for start="1" end="$cat.floor"}----{/for}{$cat.ll_catname}</option>
+                   {/volist}
+              </select>
+            </div>
+
+
+
+                       <div class="form-group">
+                       <label class="radio-inline">
+                           <input type="radio" name="ll_state" id="ll_state1" value="1"> 发布
+                       </label>
+                       <label class="radio-inline">
+                           <input type="radio" name="ll_state" id="ll_state2" value="2" checked> 不发布
+                       </label>
+                       </div>
+
+
+            <div class="layui-upload">
+               <button type="button" class="layui-btn" id="upimgbtn">上传图片</button>
+                  <div class="layui-upload-list">
+                          <img class="layui-upload-img" id="upimg" src="">
+                          <input type="hidden" name="ll_pics"   id="ll_pics">
+
+                      <p id="demoText"></p>
+                     </div>
+            </div>
+
+                       <div class="form-group">
+              <label for="ll_content">新闻内容</label>
+               <textarea name="ll_content" id="ll_content"></textarea>
+                           <script type="text/javascript">
+                               UEDITOR_CONFIG.UEDITOR_HOME_URL = '__STATIC__/ueditor/'; //一定要用这句话，否则你需要去ueditor.config.js修改路径的配置信息
+                               UE.getEditor('ll_content',{
+                                   initialFrameWidth : '100%',
+//                            initialFrameHeight: '90%'
+                               });
+                           </script>
+            </div>
+
+
+                       <input type="hidden" name="ll_uid"   id="ll_uid" value="{$Think.session.ll_suid}">
+
+                       <button type="submit" class="btn btn-default">提交</button>
+          </form> 
+			</div>
+
+
+
+
+	</div>
+
+<script>
+$(document).ready(function(){
+    $("#myNav").affix({
+        offset: { 
+            top: 125 ,
+
+      }
+    });
+});
+</script>
+<script>
+    layui.use('upload', function(){
+        var $ = layui.jquery
+                ,upload = layui.upload;
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#upimgbtn'
+            ,url: "{:url('member/upload')}"
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#upimg').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                console.log(res);
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }else {
+                    $('#ll_pics').val(res.data.src);
+                }
+                //上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+
+
+
+
+
+
+    });
+</script>
+</body>
+ 
+</html>

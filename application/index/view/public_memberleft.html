@@ -1,0 +1,15 @@
+<div class="col-md-2 col-md-offset-2 col-sm-4   hidden-xs"  id="myScrollspy">
+    <ul class="nav nav-tabs nav-stacked" id="myNav">
+        <li {if condition="$l eq 1"} class="active" {/if}  ><a href="{:url('member/index')}">个人资料</a></li>
+        <li {if condition="$l eq 2"} class="active" {/if}  ><a href="{:url('member/apply')}">小编申请</a></li>
+
+
+        {in name="ll_type" value="1,2"}
+        <li {if condition="$l eq 3"} class="active" {/if}  ><a href="{:url('member/addnews')}">编写新闻</a></li>
+        <li {if condition="$l eq 4"} class="active" {/if}  ><a href="{:url('member/newslist')}">新闻管理</a></li>
+        {/in}
+
+        <li {if condition="$l eq 5"} class="active" {/if}  ><a href="{:url('member/notice')}">通知</a></li>
+
+    </ul>
+</div>
